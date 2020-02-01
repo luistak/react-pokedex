@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import './App.scss';
+
 import PokemonList from './components/pokemon-list';
 
 const fetchPokemon = (idOrName) =>
@@ -39,16 +41,24 @@ function App() {
 
   return (
     <main className="app">
-      <header>
-        <h1> Pokedex</h1>
-        <input type="text" name="pokemon-name" onChange={handleInputChange} />
-      </header>
-      <section>
-        { isLoading ? (
-          <h1> Carregando </h1>
-        ) : <PokemonList pokemons={filteredPokemons}/>}
+      <section className="app-container">
+        <header className="header">
+          <h1 className="header-title"> Pokedex</h1>
+          <input
+            className="header-filter"
+            type="text"
+            name="pokemon-name"
+            onChange={handleInputChange}
+            placeholder="Pesquise um pokemon"
+          />
+        </header>
+        <section className="app-content">
+          { isLoading ? (
+            <h1> Carregando </h1>
+          ) : <PokemonList pokemons={filteredPokemons}/>}
+        </section>
+        <footer> <a href="https://twitter.com/_luistak" target="_blank" rel="noopener noreferrer">@_luistak</a> </footer>
       </section>
-      <footer> Rodapé </footer>
     </main>
   );
 }
